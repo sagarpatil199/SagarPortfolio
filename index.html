@@ -428,9 +428,12 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
 @keyframes drift{from{transform:translateX(-120px)}to{transform:translateX(620px)}}
 .campus-bg .wd{fill:#2c3e5c}.campus-bg .wl{fill:#ffd27a;animation:winLit 6s ease-in-out infinite}
 @keyframes winLit{0%,100%{fill:#ffd27a}45%{fill:#ffc35a}50%{fill:#2c3e5c}58%{fill:#ffd27a}}
-.campus-bg .bd-1{font-family:var(--sans);font-weight:700;font-size:12.2px;fill:#f5d27a;letter-spacing:.06em}
-.campus-bg .bd-2{font-family:var(--mono);font-size:6.5px;fill:#cbd5e1;letter-spacing:.2em}
+.campus-bg .bd-1{font-family:var(--sans);font-weight:700;font-size:11.6px;fill:#f5d27a;letter-spacing:.06em}
+.campus-bg .bd-2{font-family:var(--mono);font-size:5.6px;fill:#cbd5e1;letter-spacing:.2em}
 .campus-bg .board{filter:drop-shadow(0 0 6px rgba(224,180,74,.45))}
+.campus-bg .rays{fill:#ffd76a;opacity:.55;transform-box:view-box;transform-origin:298.5px 38px;animation:spinR 24s linear infinite}
+.campus-bg .crest-glow{animation:doorPulse 3s ease-in-out infinite}
+.campus-bg .crest{filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
 .campus-bg .door-glow{animation:doorPulse 3s ease-in-out infinite}
 @keyframes doorPulse{50%{opacity:.6}}
 .campus-bg .lg{animation:doorPulse 2.4s ease-in-out infinite}
@@ -451,7 +454,7 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
 .actor{position:absolute;left:50%;bottom:22%;width:5%;transform:translateX(-50%);opacity:0;z-index:3}
 .actor svg{filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
 .campus.in .actor{animation:comeOut 3s cubic-bezier(.45,.1,.45,1) .4s forwards}
-@keyframes comeOut{0%{left:50%;bottom:22%;width:5%;opacity:0}12%{opacity:1}100%{left:25%;bottom:0%;width:33%;opacity:1}}
+@keyframes comeOut{0%{left:50%;bottom:22%;width:5%;opacity:0}12%{opacity:1}100%{left:20%;bottom:0%;width:26%;opacity:1}}
 .degree{position:absolute;left:61%;top:33%;width:min(290px,33%);z-index:3;opacity:0;transform-origin:50% 0}
 .campus.in .degree{animation:unroll 1s 3.3s cubic-bezier(.2,.8,.2,1) forwards,degFloat 5s 4.3s ease-in-out infinite}
 @keyframes unroll{from{opacity:0;transform:perspective(700px) rotateX(-80deg) scaleY(.15)}to{opacity:1;transform:none}}
@@ -466,10 +469,16 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   background:linear-gradient(100deg,#0a6fc2,#d6247b);-webkit-background-clip:text;background-clip:text;color:transparent}
 .deg-paper em{display:block;font-size:11.5px;color:#6b5a38;font-style:italic}
 .deg-paper strong{color:#2b2213}
-.deg-seal{position:absolute;right:12px;bottom:10px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;color:#fff;
-  background:radial-gradient(circle at 35% 30%,#ef4444,#991b1b);box-shadow:0 0 0 3px #fca5a5 inset,0 3px 6px rgba(0,0,0,.3)}
+.deg-seal img{width:82%;height:auto}
+.deg-seal{position:absolute;right:18px;bottom:-22px;width:46px;height:46px;z-index:2;border-radius:50%;display:grid;place-items:center;overflow:hidden;
+  background:#fff;box-shadow:0 0 0 2px #e0b44a,0 0 0 4px #fff7e0,0 4px 10px rgba(0,0,0,.3)}
 .grad-svg{width:100%;height:auto;overflow:visible;display:block}
 .edu-path{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.edu-path .edu-card{align-items:center;position:relative;overflow:hidden}
+.edu-path .edu-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f5b400,#e8792b)}
+.edu-logo{flex:none;width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 2px #e0b44a,0 0 0 5px color-mix(in srgb,#e0b44a 20%,transparent),0 8px 20px -8px rgba(224,180,74,.6)}
+.edu-logo img{width:80%;height:auto}
+.edu-path .edu-yr{margin-left:auto;align-self:flex-start;color:#e0b44a;border-color:color-mix(in srgb,#e0b44a 40%,transparent)}
 .podium{fill:color-mix(in srgb,var(--card) 90%,transparent);stroke:var(--line)}
 .podium-top{fill:color-mix(in srgb,var(--accent) 22%,var(--card));stroke:color-mix(in srgb,var(--accent) 50%,transparent)}
 .podium-txt{font-family:var(--mono);font-size:8px;letter-spacing:.2em;fill:var(--dim)}
@@ -524,10 +533,11 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   .arch.in .plate{transform:translateZ(calc(var(--i) * 52px))}
   .exp-visual{min-height:320px}.orb{--R:125px;transform:scale(.88)}
   .edu-path{grid-template-columns:1fr}
+  .edu-path .edu-card{flex-wrap:wrap;gap:14px}.edu-path .edu-card>div{flex-basis:100%;order:3}.edu-path .edu-yr{order:2;align-self:center}.edu-logo{width:50px;height:50px}
   .campus{aspect-ratio:1/1.12}.hide-sm{display:none}
   @keyframes comeOut{0%{left:50%;bottom:22%;width:8%;opacity:0}12%{opacity:1}100%{left:27%;bottom:5%;width:48%;opacity:1}}
   .degree{left:auto;right:3%;top:36%;width:47%}
-  .deg-paper{padding:10px 10px 12px}.deg-paper b{font-size:12px}.deg-big{font-size:28px}.deg-paper small{font-size:8.5px}.deg-paper em{font-size:10px}.deg-seal{width:22px;height:22px;font-size:10px}
+  .deg-paper{padding:10px 10px 12px}.deg-paper b{font-size:12px}.deg-big{font-size:28px}.deg-paper small{font-size:8.5px}.deg-paper em{font-size:10px}.deg-seal{width:34px;height:34px;bottom:-16px;right:12px}
   .campus-tag{display:none}
   .campus-foot{bottom:10px;font-size:10.5px}
   .projects,.skills{grid-template-columns:1fr}
@@ -794,6 +804,8 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
             <linearGradient id="path" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79a74"/><stop offset="1" stop-color="#8a6346"/></linearGradient>
             <radialGradient id="doorGlow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
             <radialGradient id="lampGlow"><stop offset="0" stop-color="#ffe3a3" stop-opacity=".8"/><stop offset="1" stop-color="#ffe3a3" stop-opacity="0"/></radialGradient>
+            <radialGradient id="crestGlow"><stop offset="0" stop-color="#ffd76a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+            <clipPath id="crestClip"><circle cx="298.5" cy="38" r="20"/></clipPath>
             <radialGradient id="moonG"><stop offset="0" stop-color="#fff7d6"/><stop offset="1" stop-color="#fff7d6" stop-opacity="0"/></radialGradient>
           </defs>
           <rect width="597" height="277" fill="url(#sky)"/>
@@ -810,18 +822,30 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
           <rect x="435" y="94" width="100" height="6" fill="#e9e3d6"/>
           <rect x="443" y="108" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="463" y="108" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.5s"/><rect x="483" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="503" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="523" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="443" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="463" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:3.7s"/><rect x="483" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="503" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:1.9s"/><rect x="523" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="443" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="463" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="483" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:0.3s"/><rect x="503" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="523" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:4.3s"/><rect x="443" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="463" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="483" y="168" width="14" height="11" rx="1.5" class="wl" style="animation-delay:0.4s"/><rect x="503" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="523" y="168" width="14" height="11" rx="1.5" class="wd"/>
           <!-- main block -->
-          <rect x="150" y="70" width="297" height="132" fill="url(#wall)"/>
-          <rect x="146" y="66" width="305" height="7" fill="#faf6ee"/>
-          <rect x="162.0" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:1.6s"/><rect x="183.4" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="204.8" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="226.2" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:0.0s"/><rect x="247.6" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="269.0" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="290.4" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="311.79999999999995" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:2.8s"/><rect x="333.2" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="354.6" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="376.0" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="397.4" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="418.79999999999995" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:3.8s"/><rect x="162.0" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="183.4" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:5.7s"/><rect x="204.8" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="226.2" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:1.3s"/><rect x="247.6" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:3.5s"/><rect x="269.0" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="290.4" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:0.8s"/><rect x="311.79999999999995" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:2.0s"/><rect x="333.2" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="354.6" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="376.0" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="397.4" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:4.1s"/><rect x="418.79999999999995" y="106" width="15" height="12" rx="1.5" class="wd"/>
+          <rect x="150" y="62" width="297" height="140" fill="url(#wall)"/>
+          <rect x="146" y="58" width="305" height="6" fill="#faf6ee"/><rect x="146" y="63.5" width="305" height="1.2" fill="#e0b44a" opacity=".8"/>
+          <rect x="162.0" y="99" width="15" height="11" rx="1.5" class="wl" style="animation-delay:1.6s"/><rect x="183.4" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="204.8" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="226.2" y="99" width="15" height="11" rx="1.5" class="wl" style="animation-delay:0.0s"/><rect x="247.6" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="269.0" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="290.4" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="311.79999999999995" y="99" width="15" height="11" rx="1.5" class="wl" style="animation-delay:2.8s"/><rect x="333.2" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="354.6" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="376.0" y="99" width="15" height="11" rx="1.5" class="wd"/><rect x="397.4" y="99" width="15" height="11" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="418.79999999999995" y="99" width="15" height="11" rx="1.5" class="wl" style="animation-delay:3.8s"/><rect x="162.0" y="115" width="15" height="11" rx="1.5" class="wd"/><rect x="183.4" y="115" width="15" height="11" rx="1.5" class="wl" style="animation-delay:5.7s"/><rect x="204.8" y="115" width="15" height="11" rx="1.5" class="wd"/><rect x="226.2" y="115" width="15" height="11" rx="1.5" class="wl" style="animation-delay:1.3s"/><rect x="247.6" y="115" width="15" height="11" rx="1.5" class="wl" style="animation-delay:3.5s"/><rect x="269.0" y="115" width="15" height="11" rx="1.5" class="wd"/><rect x="290.4" y="115" width="15" height="11" rx="1.5" class="wl" style="animation-delay:0.8s"/><rect x="311.79999999999995" y="115" width="15" height="11" rx="1.5" class="wl" style="animation-delay:2.0s"/><rect x="333.2" y="115" width="15" height="11" rx="1.5" class="wd"/><rect x="354.6" y="115" width="15" height="11" rx="1.5" class="wd"/><rect x="376.0" y="115" width="15" height="11" rx="1.5" class="wd"/><rect x="397.4" y="115" width="15" height="11" rx="1.5" class="wl" style="animation-delay:4.1s"/><rect x="418.79999999999995" y="115" width="15" height="11" rx="1.5" class="wd"/>
           <rect x="150" y="128" width="297" height="3" fill="#bfb5a3"/>
           <rect x="162.0" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="183.4" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="204.8" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="226.2" y="136" width="15" height="12" rx="1.5" class="wl" style="animation-delay:0.7s"/><rect x="353.0" y="136" width="15" height="12" rx="1.5" class="wl" style="animation-delay:3.2s"/><rect x="374.4" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="395.8" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="417.2" y="136" width="15" height="12" rx="1.5" class="wd"/>
+          <!-- crest tower -->
+          <g class="tower">
+            <polygon points="258,15 298.5,1 339,15" fill="#faf6ee"/><polygon points="266,14 298.5,4.5 331,14" fill="none" stroke="#e0b44a" stroke-width=".8"/>
+            <rect x="262" y="15" width="73" height="45" fill="url(#wall)"/>
+            <rect x="258" y="14" width="81" height="3" fill="#e0b44a"/>
+            <rect x="264" y="17" width="4" height="43" fill="#e7dfcf"/><rect x="329" y="17" width="4" height="43" fill="#e7dfcf"/>
+          </g>
+          <g class="crest">
+            <circle cx="298.5" cy="38" r="34" fill="url(#crestGlow)" class="crest-glow"/>
+            <g class="rays"><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(0 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(30 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(60 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(90 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(120 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(150 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(180 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(210 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(240 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(270 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(300 298.5 38)"/><rect x="297.5" y="4" width="2" height="16" rx="1" transform="rotate(330 298.5 38)"/></g>
+            <circle cx="298.5" cy="38" r="23.5" fill="#fff" stroke="#e0b44a" stroke-width="2.6"/>
+            <circle cx="298.5" cy="38" r="20.6" fill="none" stroke="#e0b44a" stroke-opacity=".45" stroke-width=".7"/>
+            <image href="rcu-logo.png" x="280.5" y="25" width="36" height="26" preserveAspectRatio="xMidYMid meet" clip-path="url(#crestClip)"/>
+          </g>
           <!-- name board -->
           <g class="board">
-            <rect x="196" y="30" width="205" height="40" rx="5" fill="#13213f" stroke="#e0b44a" stroke-width="1.5"/>
-            <rect x="200" y="34" width="197" height="32" rx="3" fill="none" stroke="#e0b44a" stroke-opacity=".35"/>
-            <text x="298.5" y="49" text-anchor="middle" class="bd-1">RANI CHANNAMMA UNIVERSITY</text>
-            <text x="298.5" y="61" text-anchor="middle" class="bd-2">VIDYASANGAMA · BELAGAVI</text>
-            <rect x="214" y="70" width="3" height="0" fill="#e0b44a"/>
+            <rect x="178" y="67" width="241" height="26" rx="4" fill="#13213f" stroke="#e0b44a" stroke-width="1.3"/>
+            <text x="298.5" y="80" text-anchor="middle" class="bd-1">RANI CHANNAMMA UNIVERSITY</text>
+            <text x="298.5" y="88.5" text-anchor="middle" class="bd-2">VIDYASANGAMA · BELAGAVI</text>
           </g>
           <!-- porch -->
           <rect x="246" y="150" width="105" height="52" fill="#2b2420"/>
@@ -856,9 +880,9 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
             <b>Master of Computer Applications</b>
             <span class="deg-big">MCA</span>
             <em>Conferred upon <strong>Sagar Patil</strong> · 2023</em>
-            <div class="deg-seal">★</div>
           </div>
           <div class="deg-roll"></div>
+          <div class="deg-seal"><img src="rcu-logo.png" alt=""></div>
         </div>
         <div class="actor">
       <svg viewBox="0 0 300 340" class="grad-svg">
@@ -921,8 +945,8 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
         <div class="campus-foot"><span>🎓 Class of 2023</span><span>MCA · BCA</span></div>
       </div>
       <div class="edu-path">
-        <div class="edu-card reveal"><span class="edu-yr">2023</span><div><h3>Master of Computer Applications (MCA)</h3><p>Rani Channamma University, Belagavi, Karnataka</p></div></div>
-        <div class="edu-card reveal"><span class="edu-yr">2020</span><div><h3>Bachelor of Computer Applications (BCA)</h3><p>Rani Channamma University, Belagavi, Karnataka</p></div></div>
+        <div class="edu-card reveal"><span class="edu-logo"><img src="rcu-logo.png" alt="Rani Channamma University logo"></span><div><h3>Master of Computer Applications (MCA)</h3><p>Rani Channamma University, Belagavi, Karnataka</p></div><span class="edu-yr">2023</span></div>
+        <div class="edu-card reveal"><span class="edu-logo"><img src="rcu-logo.png" alt="Rani Channamma University logo"></span><div><h3>Bachelor of Computer Applications (BCA)</h3><p>Rani Channamma University, Belagavi, Karnataka</p></div><span class="edu-yr">2020</span></div>
       </div>
     </div>
   </section>
