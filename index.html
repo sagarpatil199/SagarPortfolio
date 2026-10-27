@@ -418,18 +418,65 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
 @keyframes recv{0%,100%{filter:none}10%{filter:drop-shadow(0 0 8px var(--accent))}}
 
 /* graduate animation */
-.edu-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:center}
-.edu-stage{max-width:380px;width:100%;justify-self:center;padding-top:90px}
+.edu-wrap{display:grid;gap:22px}
+.campus{position:relative;aspect-ratio:597/277;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
+.campus-bg{position:absolute;inset:0;width:100%;height:100%;display:block;transform-origin:50% 70%}
+.campus-bg .st{fill:#fff;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.2}}
+.campus-bg .cl{fill:#c7b8e8;opacity:.18}
+.campus-bg .c1{animation:drift 40s linear infinite}.campus-bg .c2{animation:drift 55s linear infinite reverse}
+@keyframes drift{from{transform:translateX(-120px)}to{transform:translateX(620px)}}
+.campus-bg .wd{fill:#2c3e5c}.campus-bg .wl{fill:#ffd27a;animation:winLit 6s ease-in-out infinite}
+@keyframes winLit{0%,100%{fill:#ffd27a}45%{fill:#ffc35a}50%{fill:#2c3e5c}58%{fill:#ffd27a}}
+.campus-bg .bd-1{font-family:var(--sans);font-weight:700;font-size:12.2px;fill:#f5d27a;letter-spacing:.06em}
+.campus-bg .bd-2{font-family:var(--mono);font-size:6.5px;fill:#cbd5e1;letter-spacing:.2em}
+.campus-bg .board{filter:drop-shadow(0 0 6px rgba(224,180,74,.45))}
+.campus-bg .door-glow{animation:doorPulse 3s ease-in-out infinite}
+@keyframes doorPulse{50%{opacity:.6}}
+.campus-bg .lg{animation:doorPulse 2.4s ease-in-out infinite}
+.campus-bg .tree{animation:sway2 5s ease-in-out infinite}.campus-bg .sw2{animation-duration:6.5s;animation-direction:reverse}
+@keyframes sway2{50%{transform:rotate(1.6deg)}}
+.campus-bg .ff{fill:#d9f99d;filter:drop-shadow(0 0 3px #bef264);animation:fly 5s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translate(0,0);opacity:.1}50%{transform:translate(10px,-14px);opacity:1}}
+.campus-bg *{transform-box:fill-box}
+.campus-bg .tree{transform-box:view-box}
+.campus.in .campus-bg{animation:kenburns 18s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
+.campus::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 70%,rgba(7,9,13,.5)),radial-gradient(130% 100% at 50% 50%,transparent 60%,rgba(7,9,13,.45))}
+.campus-tag{position:absolute;top:16px;left:16px;z-index:4;font-size:13px;font-weight:600;color:#fff;padding:7px 13px;border-radius:10px;
+  background:rgba(7,9,13,.55);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px)}
+.campus-foot{position:absolute;left:16px;right:16px;bottom:14px;z-index:4;display:flex;justify-content:flex-end;gap:8px;font-family:var(--mono);font-size:12px;color:#fff}
+.campus-foot span{padding:5px 10px;border-radius:8px;background:rgba(7,9,13,.55);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px)}
+.actor{position:absolute;left:50%;bottom:22%;width:5%;transform:translateX(-50%);opacity:0;z-index:3}
+.actor svg{filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
+.campus.in .actor{animation:comeOut 3s cubic-bezier(.45,.1,.45,1) .4s forwards}
+@keyframes comeOut{0%{left:50%;bottom:22%;width:5%;opacity:0}12%{opacity:1}100%{left:25%;bottom:0%;width:33%;opacity:1}}
+.degree{position:absolute;left:61%;top:33%;width:min(290px,33%);z-index:3;opacity:0;transform-origin:50% 0}
+.campus.in .degree{animation:unroll 1s 3.3s cubic-bezier(.2,.8,.2,1) forwards,degFloat 5s 4.3s ease-in-out infinite}
+@keyframes unroll{from{opacity:0;transform:perspective(700px) rotateX(-80deg) scaleY(.15)}to{opacity:1;transform:none}}
+@keyframes degFloat{50%{transform:translateY(-6px) rotate(-1deg)}}
+.deg-roll{height:14px;border-radius:7px;margin:0 -8px;background:linear-gradient(180deg,#f3e7c2,#c9b27a 60%,#a8915a);box-shadow:0 4px 8px rgba(0,0,0,.35)}
+.deg-paper{position:relative;text-align:center;padding:14px 16px 16px;color:#3b2f1a;
+  background:linear-gradient(180deg,#fffaf0,#f6ecd2);border-left:1px solid #e2d3a8;border-right:1px solid #e2d3a8;box-shadow:0 18px 40px -12px rgba(0,0,0,.6)}
+.deg-paper::before{content:"";position:absolute;inset:6px;border:1.5px double #c9a64a;border-radius:3px;pointer-events:none}
+.deg-paper small{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a6d2c;font-weight:600}
+.deg-paper b{display:block;font-family:Georgia,serif;font-size:15px;margin:4px 0 2px;color:#2b2213}
+.deg-big{display:block;font-family:Georgia,serif;font-weight:700;font-size:38px;line-height:1.1;letter-spacing:.06em;
+  background:linear-gradient(100deg,#0a6fc2,#d6247b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.deg-paper em{display:block;font-size:11.5px;color:#6b5a38;font-style:italic}
+.deg-paper strong{color:#2b2213}
+.deg-seal{position:absolute;right:12px;bottom:10px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;color:#fff;
+  background:radial-gradient(circle at 35% 30%,#ef4444,#991b1b);box-shadow:0 0 0 3px #fca5a5 inset,0 3px 6px rgba(0,0,0,.3)}
 .grad-svg{width:100%;height:auto;overflow:visible;display:block}
-.edu-path{display:grid;gap:18px;position:relative;padding-left:26px;border-left:1px dashed var(--line)}
-.edu-path .edu-card::before{content:"";position:absolute;left:-33px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--glow)}
+.edu-path{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .podium{fill:color-mix(in srgb,var(--card) 90%,transparent);stroke:var(--line)}
 .podium-top{fill:color-mix(in srgb,var(--accent) 22%,var(--card));stroke:color-mix(in srgb,var(--accent) 50%,transparent)}
 .podium-txt{font-family:var(--mono);font-size:8px;letter-spacing:.2em;fill:var(--dim)}
 .stole{fill:var(--accent)}
 .tassel-c{fill:#fbbf24}.tassel-l{stroke:#fbbf24}
 .bubble rect,.bubble path{fill:var(--accent)}
-.bubble text{font-family:var(--sans);font-weight:700;font-size:12px;fill:#04120a}
+.bubble text{font-family:var(--sans);font-weight:700;font-size:12.5px;fill:#04120a}
 .grad-svg *{transform-box:view-box}
 .walker{transform-origin:150px 300px}
 .leg.l{transform-origin:140px 238px}.leg.r{transform-origin:160px 238px}
@@ -440,15 +487,13 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
 .bubble{transform-origin:212px 56px;opacity:0}
 .cf{opacity:0;transform-origin:150px 44px}
 
-.edu-stage.in .walker{animation:walkIn 1.6s cubic-bezier(.3,.7,.4,1) both}
-.edu-stage.in .body{animation:bob .4s ease-in-out 4,breathe 3s ease-in-out 1.6s infinite}
-.edu-stage.in .leg.l{animation:stepL .4s ease-in-out 4}
-.edu-stage.in .leg.r{animation:stepR .4s ease-in-out 4}
-.edu-stage.in .cap-fly{animation:walkIn 1.6s cubic-bezier(.3,.7,.4,1) both}
-.edu-stage.in .cap{animation:capToss 4s ease-in-out 1.8s infinite}
-.edu-stage.in .arm-r{animation:throwArm 4s ease-in-out 1.8s infinite}
-.edu-stage.in .cf{animation:burst 4s ease-out infinite}
-.edu-stage.in .bubble{animation:pop 4s ease-out 1.8s infinite}
+.campus.in .body{animation:bob .4s ease-in-out .4s 8,breathe 3s ease-in-out 3.6s infinite}
+.campus.in .leg.l{animation:stepL .4s ease-in-out .4s 8}
+.campus.in .leg.r{animation:stepR .4s ease-in-out .4s 8}
+.campus.in .cap{animation:capToss 4s ease-in-out 3.6s infinite}
+.campus.in .arm-r{animation:throwArm 4s ease-in-out 3.6s infinite}
+.campus.in .cf{animation:burst 4s ease-out infinite}
+.campus.in .bubble{animation:pop 4s ease-out 3.6s infinite}
 
 @keyframes walkIn{from{transform:translateX(-230px)}to{transform:none}}
 @keyframes bob{50%{transform:translateY(-5px)}}
@@ -478,7 +523,13 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   .arch{padding:22px}.iso-stage{height:320px}.iso{width:150px;height:150px;margin-top:120px}.plate span{font-size:19px}
   .arch.in .plate{transform:translateZ(calc(var(--i) * 52px))}
   .exp-visual{min-height:320px}.orb{--R:125px;transform:scale(.88)}
-  .edu-stage{max-width:280px}
+  .edu-path{grid-template-columns:1fr}
+  .campus{aspect-ratio:1/1.12}.hide-sm{display:none}
+  @keyframes comeOut{0%{left:50%;bottom:22%;width:8%;opacity:0}12%{opacity:1}100%{left:27%;bottom:5%;width:48%;opacity:1}}
+  .degree{left:auto;right:3%;top:36%;width:47%}
+  .deg-paper{padding:10px 10px 12px}.deg-paper b{font-size:12px}.deg-big{font-size:28px}.deg-paper small{font-size:8.5px}.deg-paper em{font-size:10px}.deg-seal{width:22px;height:22px;font-size:10px}
+  .campus-tag{display:none}
+  .campus-foot{bottom:10px;font-size:10.5px}
   .projects,.skills{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(2,1fr)}
   .nav-links{display:none;position:absolute;top:60px;right:0;left:0;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:10px}
@@ -733,19 +784,90 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
   <section id="education">
     <div class="sec-head reveal"><span class="sec-num">05.</span><h2>Education</h2><span class="rule"></span></div>
     <div class="edu-wrap">
-      <div class="edu-stage reveal" aria-hidden="true">
+      <div class="campus reveal" aria-hidden="true">
+        <svg class="campus-bg" viewBox="0 0 597 277" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1330"/><stop offset=".55" stop-color="#2a2a5e"/><stop offset=".85" stop-color="#7a4a7e"/><stop offset="1" stop-color="#e08a5a"/></linearGradient>
+            <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1ece2"/><stop offset="1" stop-color="#cfc6b6"/></linearGradient>
+            <linearGradient id="wallS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d1c3"/><stop offset="1" stop-color="#b3a998"/></linearGradient>
+            <linearGradient id="lawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f7a45"/><stop offset="1" stop-color="#173f27"/></linearGradient>
+            <linearGradient id="path" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79a74"/><stop offset="1" stop-color="#8a6346"/></linearGradient>
+            <radialGradient id="doorGlow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+            <radialGradient id="lampGlow"><stop offset="0" stop-color="#ffe3a3" stop-opacity=".8"/><stop offset="1" stop-color="#ffe3a3" stop-opacity="0"/></radialGradient>
+            <radialGradient id="moonG"><stop offset="0" stop-color="#fff7d6"/><stop offset="1" stop-color="#fff7d6" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="597" height="277" fill="url(#sky)"/>
+          <g class="stars"><circle cx="243" cy="75" r="1.1" class="st" style="animation-delay:0.4s"/><circle cx="485" cy="80" r="1.1" class="st" style="animation-delay:0.2s"/><circle cx="13" cy="60" r="0.8" class="st" style="animation-delay:1.7s"/><circle cx="196" cy="60" r="1.1" class="st" style="animation-delay:2.5s"/><circle cx="487" cy="50" r="1.1" class="st" style="animation-delay:2.6s"/><circle cx="237" cy="81" r="0.6" class="st" style="animation-delay:2.6s"/><circle cx="535" cy="49" r="1.1" class="st" style="animation-delay:0.0s"/><circle cx="65" cy="20" r="1.1" class="st" style="animation-delay:0.1s"/><circle cx="31" cy="34" r="0.8" class="st" style="animation-delay:1.8s"/><circle cx="396" cy="54" r="0.8" class="st" style="animation-delay:2.2s"/><circle cx="590" cy="56" r="0.6" class="st" style="animation-delay:2.6s"/><circle cx="99" cy="4" r="0.6" class="st" style="animation-delay:1.5s"/><circle cx="264" cy="86" r="0.8" class="st" style="animation-delay:2.3s"/><circle cx="308" cy="53" r="1.1" class="st" style="animation-delay:2.5s"/><circle cx="587" cy="44" r="1.1" class="st" style="animation-delay:1.8s"/><circle cx="237" cy="43" r="1.1" class="st" style="animation-delay:2.7s"/><circle cx="29" cy="35" r="1.1" class="st" style="animation-delay:2.0s"/><circle cx="167" cy="89" r="0.8" class="st" style="animation-delay:2.9s"/><circle cx="585" cy="72" r="0.6" class="st" style="animation-delay:2.1s"/><circle cx="216" cy="81" r="1.1" class="st" style="animation-delay:0.8s"/><circle cx="127" cy="8" r="0.8" class="st" style="animation-delay:2.6s"/><circle cx="495" cy="11" r="0.8" class="st" style="animation-delay:2.4s"/><circle cx="420" cy="19" r="0.6" class="st" style="animation-delay:0.9s"/><circle cx="425" cy="15" r="0.6" class="st" style="animation-delay:1.8s"/><circle cx="46" cy="48" r="1.1" class="st" style="animation-delay:1.8s"/><circle cx="564" cy="35" r="1.1" class="st" style="animation-delay:0.7s"/><circle cx="36" cy="39" r="0.6" class="st" style="animation-delay:0.2s"/><circle cx="548" cy="4" r="0.6" class="st" style="animation-delay:2.9s"/><circle cx="298" cy="78" r="0.8" class="st" style="animation-delay:0.5s"/><circle cx="43" cy="43" r="0.8" class="st" style="animation-delay:1.1s"/><circle cx="141" cy="48" r="0.8" class="st" style="animation-delay:1.4s"/><circle cx="532" cy="49" r="1.1" class="st" style="animation-delay:2.6s"/><circle cx="572" cy="13" r="1.1" class="st" style="animation-delay:2.9s"/><circle cx="519" cy="34" r="0.8" class="st" style="animation-delay:1.9s"/><circle cx="243" cy="38" r="0.8" class="st" style="animation-delay:2.9s"/><circle cx="533" cy="38" r="1.1" class="st" style="animation-delay:1.0s"/><circle cx="425" cy="74" r="0.8" class="st" style="animation-delay:0.1s"/><circle cx="136" cy="7" r="1.1" class="st" style="animation-delay:1.9s"/><circle cx="477" cy="45" r="1.1" class="st" style="animation-delay:2.8s"/><circle cx="285" cy="62" r="0.6" class="st" style="animation-delay:1.8s"/><circle cx="21" cy="47" r="0.8" class="st" style="animation-delay:1.9s"/><circle cx="305" cy="75" r="1.1" class="st" style="animation-delay:1.0s"/><circle cx="372" cy="23" r="0.8" class="st" style="animation-delay:2.3s"/><circle cx="270" cy="38" r="0.8" class="st" style="animation-delay:0.3s"/><circle cx="27" cy="72" r="1.1" class="st" style="animation-delay:2.2s"/></g>
+          <circle cx="520" cy="40" r="30" fill="url(#moonG)" opacity=".5"/><circle cx="520" cy="40" r="12" fill="#fff4cf"/>
+          <g class="clouds"><g class="cl c1"><ellipse cx="90" cy="48" rx="34" ry="7"/><ellipse cx="105" cy="43" rx="18" ry="7"/></g><g class="cl c2"><ellipse cx="400" cy="30" rx="28" ry="5"/><ellipse cx="412" cy="26" rx="14" ry="5"/></g></g>
+          <!-- far tree line -->
+          <path d="M0 180 Q20 150 45 165 Q60 140 85 160 Q110 145 130 168 L130 200 L0 200 Z M470 168 Q490 140 515 158 Q535 138 560 156 Q580 146 597 160 L597 200 L470 200 Z" fill="#14341f"/>
+          <!-- wings -->
+          <rect x="62" y="98" width="100" height="104" fill="url(#wallS)"/>
+          <rect x="62" y="94" width="100" height="6" fill="#e9e3d6"/>
+          <rect x="70" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="90" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="110" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="130" y="108" width="14" height="11" rx="1.5" class="wl" style="animation-delay:1.5s"/><rect x="150" y="108" width="14" height="11" rx="1.5" class="wl" style="animation-delay:4.8s"/><rect x="70" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="90" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="110" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="130" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:2.9s"/><rect x="150" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:3.0s"/><rect x="70" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:0.1s"/><rect x="90" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="110" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.5s"/><rect x="130" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:0.8s"/><rect x="150" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="70" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="90" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="110" y="168" width="14" height="11" rx="1.5" class="wl" style="animation-delay:1.3s"/><rect x="130" y="168" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="150" y="168" width="14" height="11" rx="1.5" class="wl" style="animation-delay:1.4s"/>
+          <rect x="435" y="98" width="100" height="104" fill="url(#wallS)"/>
+          <rect x="435" y="94" width="100" height="6" fill="#e9e3d6"/>
+          <rect x="443" y="108" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="463" y="108" width="14" height="11" rx="1.5" class="wl" style="animation-delay:5.5s"/><rect x="483" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="503" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="523" y="108" width="14" height="11" rx="1.5" class="wd"/><rect x="443" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="463" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:3.7s"/><rect x="483" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="503" y="128" width="14" height="11" rx="1.5" class="wl" style="animation-delay:1.9s"/><rect x="523" y="128" width="14" height="11" rx="1.5" class="wd"/><rect x="443" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="463" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="483" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:0.3s"/><rect x="503" y="148" width="14" height="11" rx="1.5" class="wd"/><rect x="523" y="148" width="14" height="11" rx="1.5" class="wl" style="animation-delay:4.3s"/><rect x="443" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="463" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="483" y="168" width="14" height="11" rx="1.5" class="wl" style="animation-delay:0.4s"/><rect x="503" y="168" width="14" height="11" rx="1.5" class="wd"/><rect x="523" y="168" width="14" height="11" rx="1.5" class="wd"/>
+          <!-- main block -->
+          <rect x="150" y="70" width="297" height="132" fill="url(#wall)"/>
+          <rect x="146" y="66" width="305" height="7" fill="#faf6ee"/>
+          <rect x="162.0" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:1.6s"/><rect x="183.4" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="204.8" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="226.2" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:0.0s"/><rect x="247.6" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="269.0" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="290.4" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="311.79999999999995" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:2.8s"/><rect x="333.2" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="354.6" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="376.0" y="84" width="15" height="12" rx="1.5" class="wd"/><rect x="397.4" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:5.3s"/><rect x="418.79999999999995" y="84" width="15" height="12" rx="1.5" class="wl" style="animation-delay:3.8s"/><rect x="162.0" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="183.4" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:5.7s"/><rect x="204.8" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="226.2" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:1.3s"/><rect x="247.6" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:3.5s"/><rect x="269.0" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="290.4" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:0.8s"/><rect x="311.79999999999995" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:2.0s"/><rect x="333.2" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="354.6" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="376.0" y="106" width="15" height="12" rx="1.5" class="wd"/><rect x="397.4" y="106" width="15" height="12" rx="1.5" class="wl" style="animation-delay:4.1s"/><rect x="418.79999999999995" y="106" width="15" height="12" rx="1.5" class="wd"/>
+          <rect x="150" y="128" width="297" height="3" fill="#bfb5a3"/>
+          <rect x="162.0" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="183.4" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="204.8" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="226.2" y="136" width="15" height="12" rx="1.5" class="wl" style="animation-delay:0.7s"/><rect x="353.0" y="136" width="15" height="12" rx="1.5" class="wl" style="animation-delay:3.2s"/><rect x="374.4" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="395.8" y="136" width="15" height="12" rx="1.5" class="wd"/><rect x="417.2" y="136" width="15" height="12" rx="1.5" class="wd"/>
+          <!-- name board -->
+          <g class="board">
+            <rect x="196" y="30" width="205" height="40" rx="5" fill="#13213f" stroke="#e0b44a" stroke-width="1.5"/>
+            <rect x="200" y="34" width="197" height="32" rx="3" fill="none" stroke="#e0b44a" stroke-opacity=".35"/>
+            <text x="298.5" y="49" text-anchor="middle" class="bd-1">RANI CHANNAMMA UNIVERSITY</text>
+            <text x="298.5" y="61" text-anchor="middle" class="bd-2">VIDYASANGAMA · BELAGAVI</text>
+            <rect x="214" y="70" width="3" height="0" fill="#e0b44a"/>
+          </g>
+          <!-- porch -->
+          <rect x="246" y="150" width="105" height="52" fill="#2b2420"/>
+          <ellipse cx="298.5" cy="182" rx="55" ry="28" fill="url(#doorGlow)" class="door-glow"/>
+          <rect x="282" y="160" width="33" height="42" rx="2" fill="#ffd27a" opacity=".85" class="door"/>
+          <rect x="297.5" y="160" width="2" height="42" fill="#b8862e"/>
+          <rect x="236" y="140" width="125" height="10" rx="2" fill="#f7f2e8"/>
+          <rect x="236" y="148" width="125" height="3" fill="#bfb5a3"/>
+          <rect x="248" y="151" width="8" height="51" fill="#e08a2e"/><rect x="341" y="151" width="8" height="51" fill="#e08a2e"/>
+          <rect x="270" y="151" width="6" height="51" fill="#f09c3c"/><rect x="321" y="151" width="6" height="51" fill="#f09c3c"/>
+          <!-- stairs -->
+          <rect x="262" y="202" width="73" height="4" fill="#e06a7a"/><rect x="258" y="206" width="81" height="4" fill="#c9566a"/><rect x="254" y="210" width="89" height="4" fill="#b54a5d"/>
+          <!-- ground -->
+          <rect x="0" y="200" width="597" height="77" fill="url(#lawn)"/>
+          <rect x="0" y="200" width="597" height="3" fill="#3d8f55" opacity=".6"/>
+          <path d="M254 214 L343 214 C330 235 260 250 210 277 L60 277 C120 255 220 238 254 214 Z" fill="url(#path)"/>
+          <path d="M290 214 C270 238 190 258 120 277" stroke="#e5c3a1" stroke-opacity=".35" stroke-dasharray="5 7" fill="none"/>
+          <!-- hedges -->
+          <rect x="62" y="196" width="100" height="10" rx="5" fill="#2a7a45"/><rect x="435" y="196" width="100" height="10" rx="5" fill="#2a7a45"/>
+          <!-- lamps -->
+          <g class="lamp"><circle cx="232" cy="208" r="18" fill="url(#lampGlow)" class="lg"/><rect x="231" y="208" width="2" height="22" fill="#222"/><circle cx="232" cy="207" r="3" fill="#ffe3a3"/></g>
+          <g class="lamp"><circle cx="372" cy="208" r="18" fill="url(#lampGlow)" class="lg"/><rect x="371" y="208" width="2" height="22" fill="#222"/><circle cx="372" cy="207" r="3" fill="#ffe3a3"/></g>
+          <!-- trees -->
+          <g class="tree sw1" style="transform-origin:30px 238px"><rect x="26.875" y="205.5" width="6.25" height="32.5" fill="#4a3426"/><circle cx="30" cy="193.0" r="22.5" fill="#1f6b3f"/><circle cx="15.0" cy="203.0" r="16.25" fill="#25804b"/><circle cx="45.0" cy="201.75" r="17.5" fill="#2a8f55"/><circle cx="33.75" cy="180.5" r="13.75" fill="#33a062"/></g><g class="tree sw2" style="transform-origin:185px 214px"><rect x="182.875" y="191.9" width="4.25" height="22.099999999999998" fill="#4a3426"/><circle cx="185" cy="183.4" r="15.299999999999999" fill="#1f6b3f"/><circle cx="174.8" cy="190.2" r="11.049999999999999" fill="#25804b"/><circle cx="195.2" cy="189.35" r="11.9" fill="#2a8f55"/><circle cx="187.55" cy="174.9" r="9.35" fill="#33a062"/></g><g class="tree sw1" style="transform-origin:420px 214px"><rect x="417.75" y="190.6" width="4.5" height="23.400000000000002" fill="#4a3426"/><circle cx="420" cy="181.6" r="16.2" fill="#1f6b3f"/><circle cx="409.2" cy="188.8" r="11.700000000000001" fill="#25804b"/><circle cx="430.8" cy="187.9" r="12.6" fill="#2a8f55"/><circle cx="422.7" cy="172.6" r="9.9" fill="#33a062"/></g><g class="tree sw2" style="transform-origin:560px 240px"><rect x="556.75" y="206.2" width="6.5" height="33.800000000000004" fill="#4a3426"/><circle cx="560" cy="193.2" r="23.400000000000002" fill="#1f6b3f"/><circle cx="544.4" cy="203.6" r="16.900000000000002" fill="#25804b"/><circle cx="575.6" cy="202.3" r="18.2" fill="#2a8f55"/><circle cx="563.9" cy="180.2" r="14.3" fill="#33a062"/></g><g class="tree sw1" style="transform-origin:500px 262px"><rect x="497.625" y="237.3" width="4.75" height="24.7" fill="#4a3426"/><circle cx="500" cy="227.8" r="17.099999999999998" fill="#1f6b3f"/><circle cx="488.6" cy="235.4" r="12.35" fill="#25804b"/><circle cx="511.4" cy="234.45" r="13.299999999999999" fill="#2a8f55"/><circle cx="502.85" cy="218.3" r="10.45" fill="#33a062"/></g>
+          <g class="fflies"><circle cx="337" cy="234" r="1.4" class="ff" style="animation-delay:1.1s;animation-duration:6.4s"/><circle cx="264" cy="211" r="1.4" class="ff" style="animation-delay:0.9s;animation-duration:5.3s"/><circle cx="119" cy="183" r="1.4" class="ff" style="animation-delay:3.0s;animation-duration:6.8s"/><circle cx="249" cy="226" r="1.4" class="ff" style="animation-delay:4.0s;animation-duration:6.9s"/><circle cx="101" cy="213" r="1.4" class="ff" style="animation-delay:3.7s;animation-duration:4.7s"/><circle cx="481" cy="204" r="1.4" class="ff" style="animation-delay:1.1s;animation-duration:4.4s"/><circle cx="562" cy="194" r="1.4" class="ff" style="animation-delay:1.6s;animation-duration:6.5s"/><circle cx="207" cy="205" r="1.4" class="ff" style="animation-delay:1.7s;animation-duration:6.5s"/><circle cx="107" cy="249" r="1.4" class="ff" style="animation-delay:1.7s;animation-duration:4.4s"/><circle cx="318" cy="236" r="1.4" class="ff" style="animation-delay:4.0s;animation-duration:4.8s"/><circle cx="374" cy="251" r="1.4" class="ff" style="animation-delay:2.1s;animation-duration:5.3s"/><circle cx="439" cy="174" r="1.4" class="ff" style="animation-delay:4.6s;animation-duration:4.5s"/><circle cx="24" cy="231" r="1.4" class="ff" style="animation-delay:4.7s;animation-duration:6.6s"/><circle cx="542" cy="225" r="1.4" class="ff" style="animation-delay:2.8s;animation-duration:7.0s"/><circle cx="247" cy="174" r="1.4" class="ff" style="animation-delay:3.7s;animation-duration:6.5s"/><circle cx="551" cy="206" r="1.4" class="ff" style="animation-delay:2.7s;animation-duration:6.7s"/></g>
+        </svg>
+        <div class="campus-tag"><span class="pin">📍</span> Belagavi, Karnataka</div>
+        <div class="degree">
+          <div class="deg-roll"></div>
+          <div class="deg-paper">
+            <small>Rani Channamma University</small>
+            <b>Master of Computer Applications</b>
+            <span class="deg-big">MCA</span>
+            <em>Conferred upon <strong>Sagar Patil</strong> · 2023</em>
+            <div class="deg-seal">★</div>
+          </div>
+          <div class="deg-roll"></div>
+        </div>
+        <div class="actor">
       <svg viewBox="0 0 300 340" class="grad-svg">
         <defs>
           <linearGradient id="gownG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e2a4a"/><stop offset="1" stop-color="#121a30"/></linearGradient>
           <radialGradient id="spot" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="var(--accent)" stop-opacity=".35"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></radialGradient>
         </defs>
-        <ellipse cx="150" cy="300" rx="130" ry="40" fill="url(#spot)"/>
-        <!-- stage / podium -->
-        <path d="M40 304 L260 304 L248 322 L52 322 Z" class="podium"/>
-        <ellipse cx="150" cy="304" rx="110" ry="8" class="podium-top"/>
-        <text x="150" y="317" class="podium-txt" text-anchor="middle">CLASS OF 2023</text>
 
-        <g class="confetti"><rect class="cf" x="146.5" y="40" width="7" height="3" rx="1.5" fill="var(--accent3)" style="--dx:-73px;--dy:-17px;--r:239deg;animation-delay:calc(1.8s + 0.14s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent)" style="--dx:-81px;--dy:23px;--r:306deg;animation-delay:calc(1.8s + 0.14s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="var(--accent)" style="--dx:29px;--dy:23px;--r:316deg;animation-delay:calc(1.8s + 0.04s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="#f472b6" style="--dx:-80px;--dy:66px;--r:372deg;animation-delay:calc(1.8s + 0.06s)"/><rect class="cf" x="146.5" y="40" width="7" height="10" rx="1.5" fill="#fbbf24" style="--dx:-7px;--dy:-1px;--r:501deg;animation-delay:calc(1.8s + 0.07s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="#f472b6" style="--dx:73px;--dy:29px;--r:487deg;animation-delay:calc(1.8s + 0.08s)"/><rect class="cf" x="147.5" y="40" width="5" height="10" rx="1.5" fill="#fbbf24" style="--dx:78px;--dy:73px;--r:348deg;animation-delay:calc(1.8s + 0.11s)"/><rect class="cf" x="146.5" y="40" width="7" height="10" rx="1.5" fill="var(--accent3)" style="--dx:-56px;--dy:51px;--r:528deg;animation-delay:calc(1.8s + 0.10s)"/><rect class="cf" x="147.0" y="40" width="6" height="8" rx="1.5" fill="var(--accent)" style="--dx:31px;--dy:13px;--r:242deg;animation-delay:calc(1.8s + 0.11s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent3)" style="--dx:-56px;--dy:-11px;--r:203deg;animation-delay:calc(1.8s + 0.14s)"/><rect class="cf" x="147.0" y="40" width="6" height="3" rx="1.5" fill="var(--accent2)" style="--dx:-36px;--dy:-19px;--r:587deg;animation-delay:calc(1.8s + 0.06s)"/><rect class="cf" x="147.5" y="40" width="5" height="8" rx="1.5" fill="#f472b6" style="--dx:72px;--dy:23px;--r:465deg;animation-delay:calc(1.8s + 0.11s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="var(--accent2)" style="--dx:86px;--dy:56px;--r:417deg;animation-delay:calc(1.8s + 0.10s)"/><rect class="cf" x="147.5" y="40" width="5" height="8" rx="1.5" fill="#f472b6" style="--dx:-71px;--dy:40px;--r:558deg;animation-delay:calc(1.8s + 0.09s)"/><rect class="cf" x="146.5" y="40" width="7" height="10" rx="1.5" fill="var(--accent)" style="--dx:-86px;--dy:20px;--r:647deg;animation-delay:calc(1.8s + 0.13s)"/><rect class="cf" x="147.0" y="40" width="6" height="8" rx="1.5" fill="var(--accent)" style="--dx:103px;--dy:18px;--r:673deg;animation-delay:calc(1.8s + 0.10s)"/><rect class="cf" x="147.0" y="40" width="6" height="10" rx="1.5" fill="var(--accent)" style="--dx:-74px;--dy:52px;--r:284deg;animation-delay:calc(1.8s + 0.00s)"/><rect class="cf" x="147.5" y="40" width="5" height="10" rx="1.5" fill="#fbbf24" style="--dx:-83px;--dy:25px;--r:332deg;animation-delay:calc(1.8s + 0.10s)"/><rect class="cf" x="147.0" y="40" width="6" height="8" rx="1.5" fill="#fbbf24" style="--dx:93px;--dy:40px;--r:675deg;animation-delay:calc(1.8s + 0.05s)"/><rect class="cf" x="146.5" y="40" width="7" height="3" rx="1.5" fill="#f472b6" style="--dx:-92px;--dy:13px;--r:203deg;animation-delay:calc(1.8s + 0.03s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent)" style="--dx:105px;--dy:66px;--r:447deg;animation-delay:calc(1.8s + 0.08s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent2)" style="--dx:70px;--dy:45px;--r:379deg;animation-delay:calc(1.8s + 0.12s)"/></g>
+        <g class="confetti"><rect class="cf" x="146.5" y="40" width="7" height="3" rx="1.5" fill="var(--accent3)" style="--dx:-73px;--dy:-17px;--r:239deg;animation-delay:calc(3.6s + 0.14s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent)" style="--dx:-81px;--dy:23px;--r:306deg;animation-delay:calc(3.6s + 0.14s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="var(--accent)" style="--dx:29px;--dy:23px;--r:316deg;animation-delay:calc(3.6s + 0.04s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="#f472b6" style="--dx:-80px;--dy:66px;--r:372deg;animation-delay:calc(3.6s + 0.06s)"/><rect class="cf" x="146.5" y="40" width="7" height="10" rx="1.5" fill="#fbbf24" style="--dx:-7px;--dy:-1px;--r:501deg;animation-delay:calc(3.6s + 0.07s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="#f472b6" style="--dx:73px;--dy:29px;--r:487deg;animation-delay:calc(3.6s + 0.08s)"/><rect class="cf" x="147.5" y="40" width="5" height="10" rx="1.5" fill="#fbbf24" style="--dx:78px;--dy:73px;--r:348deg;animation-delay:calc(3.6s + 0.11s)"/><rect class="cf" x="146.5" y="40" width="7" height="10" rx="1.5" fill="var(--accent3)" style="--dx:-56px;--dy:51px;--r:528deg;animation-delay:calc(3.6s + 0.10s)"/><rect class="cf" x="147.0" y="40" width="6" height="8" rx="1.5" fill="var(--accent)" style="--dx:31px;--dy:13px;--r:242deg;animation-delay:calc(3.6s + 0.11s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent3)" style="--dx:-56px;--dy:-11px;--r:203deg;animation-delay:calc(3.6s + 0.14s)"/><rect class="cf" x="147.0" y="40" width="6" height="3" rx="1.5" fill="var(--accent2)" style="--dx:-36px;--dy:-19px;--r:587deg;animation-delay:calc(3.6s + 0.06s)"/><rect class="cf" x="147.5" y="40" width="5" height="8" rx="1.5" fill="#f472b6" style="--dx:72px;--dy:23px;--r:465deg;animation-delay:calc(3.6s + 0.11s)"/><rect class="cf" x="147.5" y="40" width="5" height="3" rx="1.5" fill="var(--accent2)" style="--dx:86px;--dy:56px;--r:417deg;animation-delay:calc(3.6s + 0.10s)"/><rect class="cf" x="147.5" y="40" width="5" height="8" rx="1.5" fill="#f472b6" style="--dx:-71px;--dy:40px;--r:558deg;animation-delay:calc(3.6s + 0.09s)"/><rect class="cf" x="146.5" y="40" width="7" height="10" rx="1.5" fill="var(--accent)" style="--dx:-86px;--dy:20px;--r:647deg;animation-delay:calc(3.6s + 0.13s)"/><rect class="cf" x="147.0" y="40" width="6" height="8" rx="1.5" fill="var(--accent)" style="--dx:103px;--dy:18px;--r:673deg;animation-delay:calc(3.6s + 0.10s)"/><rect class="cf" x="147.0" y="40" width="6" height="10" rx="1.5" fill="var(--accent)" style="--dx:-74px;--dy:52px;--r:284deg;animation-delay:calc(3.6s + 0.00s)"/><rect class="cf" x="147.5" y="40" width="5" height="10" rx="1.5" fill="#fbbf24" style="--dx:-83px;--dy:25px;--r:332deg;animation-delay:calc(3.6s + 0.10s)"/><rect class="cf" x="147.0" y="40" width="6" height="8" rx="1.5" fill="#fbbf24" style="--dx:93px;--dy:40px;--r:675deg;animation-delay:calc(3.6s + 0.05s)"/><rect class="cf" x="146.5" y="40" width="7" height="3" rx="1.5" fill="#f472b6" style="--dx:-92px;--dy:13px;--r:203deg;animation-delay:calc(3.6s + 0.03s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent)" style="--dx:105px;--dy:66px;--r:447deg;animation-delay:calc(3.6s + 0.08s)"/><rect class="cf" x="146.5" y="40" width="7" height="8" rx="1.5" fill="var(--accent2)" style="--dx:70px;--dy:45px;--r:379deg;animation-delay:calc(3.6s + 0.12s)"/></g>
 
         <g class="walker">
           <ellipse cx="150" cy="303" rx="42" ry="5" fill="#000" opacity=".35" class="shadow"/>
@@ -793,9 +915,11 @@ footer{padding:40px 0;text-align:center;font-family:var(--mono);font-size:12.5px
           <circle cx="150" cy="66" r="2.5" class="tassel-c"/>
           <g class="tassel"><path d="M150 66 L186 70 L186 92" class="tassel-l" fill="none" stroke-width="2"/><rect x="182" y="90" width="8" height="12" rx="2" class="tassel-c"/></g>
         </g></g>
-        <g class="bubble"><rect x="196" y="16" width="96" height="34" rx="12"/><path d="M212 50 L206 62 L224 50 Z"/><text x="244" y="38" text-anchor="middle">Graduated! 🎓</text></g>
+        <g class="bubble"><rect x="186" y="12" width="112" height="36" rx="12"/><path d="M204 48 L198 60 L216 48 Z"/><text x="242" y="35" text-anchor="middle">MCA Graduate! 🎓</text></g>
       </svg>
-    </div>
+        </div>
+        <div class="campus-foot"><span>🎓 Class of 2023</span><span>MCA · BCA</span></div>
+      </div>
       <div class="edu-path">
         <div class="edu-card reveal"><span class="edu-yr">2023</span><div><h3>Master of Computer Applications (MCA)</h3><p>Rani Channamma University, Belagavi, Karnataka</p></div></div>
         <div class="edu-card reveal"><span class="edu-yr">2020</span><div><h3>Bachelor of Computer Applications (BCA)</h3><p>Rani Channamma University, Belagavi, Karnataka</p></div></div>
